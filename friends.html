@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>College Friends</title>
+    <style>
+        #nameIntro {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+
+.nameBox {
+  background: rgb(6, 255, 151);
+  padding: 25px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 0 15px black;
+}
+
+        .friend img {
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.friend img:hover {
+    transform: scale(1.15) rotate(5deg);
+    box-shadow: 0 0 20px purple;
+}
+
+        body {
+            font-family: Arial;
+            background: #f2f2f2;
+            text-align: center;
+        }
+
+        .gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 15px;
+  padding: 10px;
+}
+
+
+        .friend {
+            cursor: pointer;
+        }
+
+     .friend img {
+  width: 100px;
+  height: 100px;
+}
+
+
+  #popup {
+  width: 90%;
+  max-width: 350px;
+}
+
+
+        textarea {
+            width: 100%;
+            height: 80px;
+        }
+
+      button {
+  padding: 12px 16px;
+  font-size: 16px;
+}
+
+#allMessages {
+  width: 95%;
+}
+
+.msgCard {
+  background: white;
+  border-radius: 12px;
+  padding: 12px;
+  margin: 12px;
+  box-shadow: 0 2px 8px gray;
+  text-align: left;
+}
+.msgCard h4 {
+  margin: 0;
+}
+.msgCard small {
+  color: gray;
+}
+/* NEW CSS – PASTE HERE */
+.friend img {
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.friend img:hover {
+  transform: scale(1.15) rotate(5deg);
+  box-shadow: 0 0 20px purple;
+}
+@media (max-width: 600px) {
+  h1 {
+    font-size: 22px;
+  }
+
+  .friend img {
+    width: 90px;
+    height: 90px;
+  }
+
+  textarea {
+    height: 70px;
+  }
+}
+
+/* Blur Background when popup open */
+.popupBox {
+  backdrop-filter: blur(10px);
+  background: rgba(255,255,255,0.8);
+  border-radius: 20px;
+  animation: popOpen 0.4s ease;
+}
+
+/* Popup Animation */
+@keyframes popOpen {
+  from { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+  to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
+/* Textarea Style */
+textarea {
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  transition: 0.3s;
+}
+
+textarea:focus {
+  border-color: #2575fc;
+  box-shadow: 0 0 8px #2575fc;
+}
+
+/* Save Button Glow */
+.saveBtn {
+  background: #2575fc;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.saveBtn:hover {
+  box-shadow: 0 0 12px #2575fc;
+  transform: scale(1.05);
+}
+
+/* Close Button Shake */
+.closeBtn {
+  background: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.closeBtn:hover {
+  animation: shake 0.3s;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-3px); }
+  50% { transform: translateX(3px); }
+  75% { transform: translateX(-3px); }
+  100% { transform: translateX(0); }
+}
+
+/* Emoji Hover Effect */
+#emoji {
+  border-radius: 10px;
+  padding: 5px;
+  margin-top: 8px;
+  transition: 0.3s;
+}
+
+#emoji:hover {
+  transform: scale(1.1);
+}
+
+
+/* END NEW CSS */
+#intro {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.zoomText {
+  font-size: 50px;
+  animation: zoomIn 1.5s ease;
+}
+
+.creator {
+  font-size: 22px;
+  margin-top: 10px;
+  animation: bounce 2s infinite;
+}
+
+/* Floating Emojis */
+.emojis span {
+  position: absolute;
+  font-size: 30px;
+  animation: float 4s linear infinite;
+}
+
+.emojis span:nth-child(1) { left: 10%; animation-delay: 0s; }
+.emojis span:nth-child(2) { left: 30%; animation-delay: 1s; }
+.emojis span:nth-child(3) { left: 60%; animation-delay: 2s; }
+.emojis span:nth-child(4) { left: 80%; animation-delay: 3s; }
+
+/* Animations */
+@keyframes zoomIn {
+  from { transform: scale(0); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes bounce {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes float {
+  0% { top: 100%; opacity: 0; }
+  50% { opacity: 1; }
+  100% { top: -10%; opacity: 0; }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+
+</style>
+</head>
+<body>
+<div id="intro">
+  <h1 class="zoomText">AAKBA 2026</h1>
+  <p class="creator">Created by Syed Abubaker</p>
+
+  <div class="emojis">
+    <span>🔥</span>
+    <span>🎉</span>
+    <span>😎</span>
+    <span>🚀</span>
+  </div>
+</div>
+
+</div>
+
+
+
+
+    <script type="module">
+  // Import Firebase
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+  // Your Firebase Config (copy from Firebase console)
+  const firebaseConfig = {
+  apiKey: "AIzaSyBEWHDcuSJWfJZlF9orQaZIIxaIBFsbCbk",
+  authDomain: "college-friends-fe28d.firebaseapp.com",
+  projectId: "college-friends-fe28d",
+  storageBucket: "college-friends-fe28d.firebasestorage.app",
+  messagingSenderId: "162409461016",
+  appId: "1:162409461016:web:2db44dbe4b3e683c121a6d"
+};
+
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // Save Data
+  window.saveDescription = async function () {
+const writer = document.getElementById("writerName").value;
+  const msg = document.getElementById("description").value;
+  const emoji = document.getElementById("emoji").value;
+
+ if(writer === "" || msg === ""){
+  popup.style.animation = "shake 0.4s";
+  setTimeout(()=> popup.style.animation = "", 400);
+  alert("Write something bro 😜");
+  return;
+}
+
+  
+ await addDoc(collection(db, "messages"), {
+  person: currentPerson,
+  writer: writer,
+  message: msg,
+  emoji: emoji,   // ADD THIS LINE
+  time: new Date()
+});
+
+
+  alert("Saved Online!");
+  window.closePopup();
+  document.getElementById("writerName").value = "";
+document.getElementById("description").value = "";
+
+};
+
+  // View All
+  window.viewAll = async function () {
+    const snapshot = await getDocs(collection(db, "messages"));
+    const container = document.getElementById("allMessages");
+    container.innerHTML = "<h3>All Messages</h3>";
+
+    snapshot.forEach(doc => {
+      const d = doc.data();
+      container.innerHTML += `
+  <div class="msgCard">
+    <h4>${d.person} ${d.emoji || ""}</h4>
+    <small>by ${d.writer}</small>
+    <p>${d.message}</p>
+  </div>
+`;
+    });
+  };
+</script>
+
+
+<h1>AAKBA 2026</h1>
+
+<div class="gallery" id="gallery"></div>
+
+<div id="popup" class="popupBox">
+    <button class="saveBtn" onclick="saveDescription()">Save</button>
+<button class="closeBtn" onclick="closePopup()">Close</button>
+
+
+    <h3 id="personName"></h3>
+    <input id="writerName" placeholder="Your Name">
+
+    <textarea id="description" placeholder="Write about this person..."></textarea>
+    <select id="emoji">
+  <option value="😀">😀 Happy</option>
+  <option value="🔥">🔥 Awesome</option>
+  <option value="❤️">❤️ Love</option>
+  <option value="😂">😂 Funny</option>
+  <option value="🫥">🫥 Boring</option>
+</select>
+</div>
+
+<script>
+const friends = [
+    {name: "Mudassir💣", img: "mudasir.jpeg"},
+    {name: "ALI🌑", img: "ali.jpeg"},
+    {name: "Abubaker🤓", img: "abubaker.jpeg"},
+    {name: "Ansar📞", img: "ansar.jpeg"},
+    {name: "Rizwan👱🏿‍♂️", img: "rizwan.jpeg"},
+    {name: "Mubeen🧔🏻‍♀️", img: "mubeen.jpeg"},
+    {name: "Shoaib🦐", img: "shoaib.jpeg"},
+    {name: "Ayesha😁", img: ""},
+    {name: "Lisa🦀", img: ""}
+];
+
+const gallery = document.getElementById("gallery");
+const popup = document.getElementById("popup");
+const personName = document.getElementById("personName");
+const description = document.getElementById("description");
+
+window.currentPerson = "";
+
+friends.forEach(friend => {
+    const div = document.createElement("div");
+    div.className = "friend";
+    div.innerHTML = `
+        <img src="${friend.img}">
+        <p>Describe ${friend.name}</p>
+    `;
+    div.onclick = () => openPopup(friend.name);
+    gallery.appendChild(div);
+});
+
+function openPopup(name) {
+    window.currentPerson = name;
+    personName.innerText = "Describe " + name;
+
+    description.value = "";
+
+
+    popup.style.display = "block";
+}
+
+window.closePopup = function () {
+    popup.style.display = "none";
+};
+</script>
+<button onclick="viewAll()">View All Messages</button>
+<div id="allMessages"></div>
+<script>
+window.onload = function () {
+  setTimeout(() => {
+    document.getElementById("intro").style.display = "none";
+  }, 3000);
+};
+</script>
+
+</body>
+</html>
